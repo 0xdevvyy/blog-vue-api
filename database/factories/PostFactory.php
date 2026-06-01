@@ -32,12 +32,7 @@ class PostFactory extends Factory
 
             'description' => fake()->sentence(),
 
-            'blog_image' => fake()->imageUrl(
-                1200,
-                630,
-                'technology',
-                true
-            ),
+            'blog_image' => 'https://placehold.net/600x600.png',
 
             'status' => fake()->randomElement([
                 'published',
