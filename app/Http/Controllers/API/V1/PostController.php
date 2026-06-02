@@ -7,15 +7,34 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\V1\PostCollection;
+use App\Http\Resources\V1\PostResource;
+use App\Queries\Post\PostQuery;
+use App\Queries\Post\QueryByTag;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Post $posts)
-    {
-        return new PostCollection($posts->all());
+     public function index(Request $request,PostQuery $query) {
+
+
+            $posts = $query
+            ->addFilter(
+                new QueryByTag(
+                    $request->query('tag')
+                )
+            )
+            ->build()
+            ->with('tags')
+            ->latest()
+            ->paginate();
+
+        // dd($request->tag);
+
+            return new PostCollection($posts);
+       
     }
 
     /**
@@ -39,7 +58,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+         return new PostResource(
+            $post->load('tags')
+        );
     }
 
     /**
