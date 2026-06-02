@@ -18,12 +18,20 @@ class PostSeeder extends Seeder
 
         Post::factory()
             ->count(10)
-            ->create()
-            ->each(function ($post) use ($tagIds) {
-                $post->tags()->attach(
-                    $tagIds->random(rand(1, 3))
-                );
-    });
+            ->create();
 
+        Post::factory()
+            ->count(10)
+            ->create();
+
+        // Post::factory()
+        //     ->count(20)
+        //     ->hasAttached(
+        //         Tag::factory()->count(1)
+        //     )
+        //     ->create();
+            
     }
+
+    
 }
