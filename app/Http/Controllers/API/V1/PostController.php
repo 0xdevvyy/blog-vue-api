@@ -19,7 +19,7 @@ class PostController extends Controller
      */
      public function index(Request $request,PostQuery $query) {
 
-
+            //will do this in an action.
             $posts = $query
             ->addFilter(
                 new QueryByTag(
@@ -50,7 +50,9 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        //first get the validated input in StoreRequest or DTO
+        //will create an action that store the validated input through database
+        //return success store
     }
 
     /**
