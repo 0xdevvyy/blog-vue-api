@@ -17,12 +17,12 @@ class PostSeeder extends Seeder
        $tagIds = Tag::pluck('id');
 
         Post::factory()
-            ->count(10)
+            ->count(1)
             ->create();
 
-        Post::factory()
-            ->count(10)
-            ->create();
+        // Post::factory()
+        //     ->count(10)
+        //     ->create();
 
         // Post::factory()
         //     ->count(20)

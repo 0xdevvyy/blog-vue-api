@@ -23,4 +23,12 @@ enum Status: string
     }
 
     //color
+      public function badge(): string
+    {
+        return match ($this) {
+            self::PUBLISHED => 'bg-green-100 text-green-700',
+            self::DRAFT => 'bg-yellow-100 text-yellow-700',
+            self::ARCHIVE => 'bg-gray-100 text-gray-700',
+        };
+    }
 }
