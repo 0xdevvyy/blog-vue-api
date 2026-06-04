@@ -1,4 +1,3 @@
-```blade
 <x-layouts.auth>
 
 <div class="mx-auto max-w-7xl px-6 py-8">
@@ -25,7 +24,7 @@
     </div>
 
     <form
-        action="{{ route('posts.store') }}"
+        action="{{ route('post.store') }}"
         method="POST"
         enctype="multipart/form-data"
         class="grid gap-8 lg:grid-cols-[1fr_320px]"
@@ -116,7 +115,7 @@
                     </button>
 
                 </div>
-
+                {{-- will make this as a component also so just i can foreach the item --}}
                 <div class="rounded-3xl border border-border bg-card p-6">
 
                     <label class="mb-2 block text-sm font-medium">
@@ -133,6 +132,27 @@
 
                         <option value="draft">
                             Draft
+                        </option>
+                    </select>
+
+                </div>
+                {{-- will make this a component and a radio --}}
+                <div class="rounded-3xl border border-border bg-card p-6">
+
+                    <label class="mb-2 block text-sm font-medium">
+                        Tag
+                    </label>
+
+                    <select
+                        name="tags[]"
+                        class="w-full rounded-xl border border-border bg-background px-4 py-3"
+                    >
+                        <option value="1">
+                            Laravel
+                        </option>
+
+                        <option value="3">
+                            Vue
                         </option>
                     </select>
 
@@ -161,4 +181,3 @@
 </div>
 
 </x-layouts.auth>
-```
