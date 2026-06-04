@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Actions\CreatePost;
+use App\DTOs\Post\PostData;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\V1\PostCollection;
 use App\Http\Resources\V1\PostResource;
+use App\Models\User;
 use App\Queries\Post\PostQuery;
 use App\Queries\Post\QueryByTag;
+use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -42,17 +46,24 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('post.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePostRequest $request)
+    public function store(StorePostRequest $request, CreatePost $action)
     {
-        //first get the validated input in StoreRequest or DTO
-        //will create an action that store the validated input through database
-        //return success store
+        
+        $dto = PostData::fromRequest($request);
+        // dd($request->all());
+
+        // dd($dto);
+        $action->handle($dto);
+        
+
+        return to_route('auth.dashboard')->with('success', 'Successfully uploaded a Post');
+        
     }
 
     /**

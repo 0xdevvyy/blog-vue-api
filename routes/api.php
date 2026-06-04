@@ -10,6 +10,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::prefix('v1')->group(function (){
-    Route::apiResource('posts', PostController::class);
-    Route::apiResource('tags', TagController::class);
+    Route::apiResource('posts', PostController::class)->only(['index', 'show']);
+    Route::apiResource('tags', TagController::class)->only(['index', 'show']);
 });

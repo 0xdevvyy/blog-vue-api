@@ -57,7 +57,7 @@
                 <div class="flex items-center gap-3">
 
                     <a
-                        href="/posts/create"
+                        href="{{ route('post.create') }}"
                         class="inline-flex items-center gap-2 rounded-2xl bg-primary px-6 py-3 font-semibold text-white shadow-lg shadow-primary/20 transition hover:-translate-y-1"
                     >
                         + New Post

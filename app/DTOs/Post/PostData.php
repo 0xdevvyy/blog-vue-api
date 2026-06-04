@@ -2,8 +2,10 @@
 
 namespace App\DTOs\Post;
 
+use App\Http\Requests\StorePostRequest;
 use App\Status;
 use Carbon\Carbon;
+use Illuminate\Http\UploadedFile;
 
 readonly class PostData{
 
@@ -12,11 +14,27 @@ readonly class PostData{
         public string $slug,
         public string $description,
         public string $content,
-        public string $blogImage,
+        public UploadedFile $blogImage,
         public ?Status $status,
-        public ?Carbon $createdAt,
+        public array $tags,
+        // public ?Carbon $createdAt,
     ){
 
+    }
+
+    public static function fromRequest(StorePostRequest $request): self
+    {
+        return new self(
+            title: $request->validated('title'),
+            slug: $request->validated('slug'),
+            description: $request->validated('description'),
+            content: $request->validated('content'),
+            blogImage: $request->file('blog_image'),
+            status: $request->filled('status')
+                ? Status::from($request->validated('status'))
+                : null,
+            tags: $request->validated('tags', []),
+        );
     }
 
 }

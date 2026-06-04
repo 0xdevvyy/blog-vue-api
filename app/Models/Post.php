@@ -14,6 +14,15 @@ class Post extends Model
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'slug',
+        'description',
+        'content',
+        'blog_image',
+        'status',
+    ];
+
     protected $casts = [
         'status' => Status::class,
     ];
