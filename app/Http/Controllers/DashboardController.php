@@ -13,7 +13,7 @@ class DashboardController extends Controller
         // $posts = $post::paginate(10);
         $posts = Auth::user()
             ->post()
-            ->paginate();
+            ->paginate(3);
       
         $draftCount = Auth::user()
             ->post()
@@ -23,10 +23,15 @@ class DashboardController extends Controller
             ->post()
             ->where('status', 'archive')
             ->count();
+            $publishedPost = Auth::user()
+            ->post()
+            ->where('status', 'published')
+            ->count();
         return view('dashboard.index', [
             'posts' => $posts,
             'archivePost' => $archivePost,
             'draftCount' => $draftCount,
+            'publishCount' => $publishedPost,
         ]);
     }
 }

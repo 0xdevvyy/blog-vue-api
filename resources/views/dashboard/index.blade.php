@@ -1,88 +1,20 @@
 <x-layouts.auth>
 
-    <!-- Mobile Header -->
-    <header class="lg:hidden flex items-center justify-between px-6 pt-6">
-        <div class="flex items-center gap-3">
-            <button
-                onclick="toggleSidebar()"
-                class="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card shadow-sm text-primary"
-            >
-                <x-icons.burger />
-            </button>
-
-            <h2 class="text-lg font-semibold text-primary">
-                Dashboard
-            </h2>
-        </div>
-
-        <button
-            onclick="toggleDarkMode()"
-            class="theme-toggle flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card shadow-sm text-primary"
-        >
-            <span class="light-icon">
-                <x-icons.light />
-            </span>
-
-            <span class="dark-icon hidden">
-                <x-icons.dark />
-            </span>
-        </button>
-    </header>
+    
 
     <div class="mx-auto max-w-7xl px-6 py-8 lg:px-10">
 
         <!-- Hero Section -->
-        <section class="relative overflow-hidden rounded-3xl border border-border bg-card mb-8">
-
-            <div class="absolute inset-0 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent"></div>
-
-            <div class="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
-
-            <div class="relative z-10 flex flex-col gap-8 p-8 lg:flex-row lg:items-center lg:justify-between">
-
-                <div>
-                    <span class="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-medium text-foreground">
-                        Blog Dashboard
-                    </span>
-
-                    <h1 class="mt-4 text-4xl font-bold tracking-tight text-primary">
-                        Welcome back, {{ Auth::user()->name }}
-                    </h1>
-
-                    <p class="mt-3 max-w-xl text-secondary">
-                       My blog for my project in the span of a year of unemployment.
-                    </p>
-                </div>
-
-                <div class="flex items-center gap-3">
-
-                    <a
-                        href="{{ route('post.create') }}"
-                        class="inline-flex items-center gap-2 rounded-2xl bg-primary px-6 py-3 font-semibold text-white shadow-lg shadow-primary/20 transition hover:-translate-y-1"
-                    >
-                        + New Post
-                    </a>
-
-                    <button
-                        onclick="toggleDarkMode()"
-                        class="theme-toggle hidden h-12 w-12 items-center justify-center rounded-2xl border border-border bg-card shadow-sm lg:flex text-foreground"
-                    >
-                        <span class="light-icon">
-                            <x-icons.light />
-                        </span>
-
-                        <span class="dark-icon hidden">
-                            <x-icons.dark />
-                        </span>
-                    </button>
-
-                </div>
-
-            </div>
-        </section>
+        <x-header
+            :title="'Welcome back, ' . Auth::user()->name"
+            description="My blog for my project in the span of a year of unemployment."
+            button-text="+ New Post"
+            :button-url="route('post.create')"
+            label="Dashboard"
+        />
 
         <!-- Stats -->
-        <section class="mb-8 grid gap-6 md:grid-cols-3">
+        <section class="mb-8 grid gap-6 md:grid-cols-4">
 
             <div class="rounded-3xl border border-border bg-card p-6 shadow-sm">
                 <p class="text-sm text-secondary">
@@ -100,7 +32,7 @@
                 </p>
 
                 <h3 class="mt-2 text-3xl font-bold text-green-500">
-                    {{ $publishedCount ?? 0 }}
+                    {{ $publishCount ?? 0 }}
                 </h3>
             </div>
 
@@ -111,6 +43,15 @@
 
                 <h3 class="mt-2 text-3xl font-bold text-amber-500">
                     {{ $draftCount ?? 0 }}
+                </h3>
+            </div>
+            <div class="rounded-3xl border border-border bg-card p-6 shadow-sm">
+                <p class="text-sm text-secondary">
+                    Archive
+                </p>
+
+                <h3 class="mt-2 text-3xl font-bold text-foreground">
+                    {{ $archivePost ?? 0 }}
                 </h3>
             </div>
 
@@ -178,7 +119,7 @@
 
                                 <div class="overflow-hidden rounded-2xl border border-border">
                                     <img
-                                        src="{{ $post->featured_image }}"
+                                        src="{{  asset('storage/' . $post->blog_image) }}"
                                         alt="{{ $post->title }}"
                                         class="h-20 w-20 object-cover transition duration-500 group-hover:scale-110"
                                     >

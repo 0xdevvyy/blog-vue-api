@@ -10,6 +10,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\V1\PostCollection;
 use App\Http\Resources\V1\PostResource;
+use App\Models\Tag;
 use App\Models\User;
 use App\Queries\Post\PostQuery;
 use App\Queries\Post\QueryByTag;
@@ -46,7 +47,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        $tags = Tag::all();
+
+        return view('post.create', compact('tags'));
     }
 
     /**

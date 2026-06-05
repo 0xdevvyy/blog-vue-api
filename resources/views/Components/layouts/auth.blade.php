@@ -12,10 +12,11 @@
         <x-sidebar />
         
         <main class="flex-1 flex flex-col h-full overflow-hidden">
-            {{-- <x-header /> --}}
+            
 
             <!-- Page Content -->
             <div class="flex-1 overflow-y-auto overflow-x-hidden p-6">
+                
                 {{ $slot }}
             </div>
 
