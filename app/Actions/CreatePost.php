@@ -24,7 +24,7 @@ final class CreatePost {
        
         DB::transaction(function () use ($data) {
             $imagePath = $data->blogImage->store('post', 'public');
-            $post = $this->user->post()->create([
+            $post = $this->user->posts()->create([
                 'title' => $data->title,
                 'slug' => $data->slug,
                 'description' => $data->description,

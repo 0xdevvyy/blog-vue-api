@@ -158,7 +158,7 @@
                             <div class="flex justify-end gap-2">
 
                                 <a
-                                    href="/posts/{{ $post->id }}/edit"
+                                    href="{{ route('post.edit', $post->id) }}"
                                     class="rounded-xl border border-border px-4 py-2 text-sm font-medium transition text-primary hover:bg-background"
                                 >
                                     Edit
