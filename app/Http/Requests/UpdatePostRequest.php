@@ -2,8 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Status;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Enum;
 
 class UpdatePostRequest extends FormRequest
 {
@@ -12,7 +15,7 @@ class UpdatePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +26,20 @@ class UpdatePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['required', 'string', 'min:8', 'max:255'],
+            'slug' => [
+                'sometimes',
+                'string',
+                'max:255',
+                Rule::unique('posts', 'slug')->ignore($this->route('post')),
+            ],
+            'content' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'blog_image' => ['sometimes', 'nullable', 'image', 'max:2048'],
+            // 'status' => ['required', Rule::in(['published', 'draft', 'archive'])],
+            'status' => ['nullable', new Enum(Status::class)],
+            'tags' => ['required','array'],
+            'tags.*' => ['exists:tags,id'],
         ];
     }
 }

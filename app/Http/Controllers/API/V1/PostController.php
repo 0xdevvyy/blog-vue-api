@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Actions\CreatePost;
+use App\Actions\UpdatePost;
 use App\DTOs\Post\PostData;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
@@ -82,17 +83,24 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+   public function edit(Post $post)
     {
-        //
+        $tags = Tag::all();
+
+        return view('post.edit', compact('post', 'tags'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(UpdatePostRequest $request, UpdatePost $action, Post $post)
     {
-        //
+        //store post request is just the same as update post request //nah its not the same hahahah there is other logic when updating 
+        $dto = PostData::fromRequest($request);
+        $action->update($dto, $post);
+
+       return to_route('post.edit', $post)->with('success', 'Successfully Updated a Post');
+
     }
 
     /**

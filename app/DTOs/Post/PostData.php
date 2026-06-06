@@ -5,6 +5,7 @@ namespace App\DTOs\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Status;
 use Carbon\Carbon;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\UploadedFile;
 
 readonly class PostData{
@@ -14,7 +15,7 @@ readonly class PostData{
         public string $slug,
         public string $description,
         public string $content,
-        public UploadedFile $blogImage,
+        public ?UploadedFile $blogImage,
         public ?Status $status,
         public array $tags,
         // public ?Carbon $createdAt,
@@ -22,7 +23,7 @@ readonly class PostData{
 
     }
 
-    public static function fromRequest(StorePostRequest $request): self
+    public static function fromRequest(FormRequest $request): self
     {
         return new self(
             title: $request->validated('title'),

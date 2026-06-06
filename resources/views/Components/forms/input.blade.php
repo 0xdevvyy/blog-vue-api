@@ -15,14 +15,28 @@
         </label>
     @endif
 
-    <input
-        id="{{ $name }}"
-        name="{{ $name }}"
-        type="{{ $type }}"
-        value="{{ old($name, $value) }}"
-        {{ $attributes }}
-        class="w-full rounded-xl border border-border px-4 py-3 outline-none transition focus:border-black focus:ring-2 focus:ring-black/10 text-foreground "
-    />
+    @if ($type === 'file')
+        <input
+            id="{{ $name }}"
+            name="{{ $name }}"
+            type="file"
+            accept="image/*"
+
+            {{ $attributes->merge([
+                'class' => 'hidden'
+            ]) }}
+        />
+    @else
+        <input
+            id="{{ $name }}"
+            name="{{ $name }}"
+            type="{{ $type }}"
+            value="{{ old($name, $value) }}"
+            {{ $attributes->merge([
+                'class' => 'w-full rounded-xl border border-border px-4 py-3 outline-none transition focus:border-black focus:ring-2 focus:ring-black/10 text-foreground'
+            ]) }}
+        />
+    @endif
 
     @error($name)
         <p class="mt-2 text-sm text-error">
