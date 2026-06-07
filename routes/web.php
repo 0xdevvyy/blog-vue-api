@@ -13,8 +13,13 @@ Route::middleware('guest')->group(function (){
 
 Route::middleware('auth')->group(function (){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('auth.dashboard');
-    Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
-    Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
-    Route::get('/post/{post:id}/edit', [PostController::class, 'edit'])->name('post.edit');
-    Route::patch('/post/{post:id}/update', [PostController::class, 'update'])->name('post.update');
+    
+    Route::prefix('post')->group(function (){
+        Route::get('/create', [PostController::class, 'create'])->name('post.create');
+        Route::post('/store', [PostController::class, 'store'])->name('post.store');
+        Route::get('/{post:id}/edit', [PostController::class, 'edit'])->name('post.edit');
+        Route::patch('/{post:id}/update', [PostController::class, 'update'])->name('post.update');
+        Route::delete('/{post:id}/delete', [PostController::class, 'destroy'])->name('post.delete');
+    });
+    
 });

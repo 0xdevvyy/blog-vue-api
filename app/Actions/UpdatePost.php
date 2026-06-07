@@ -27,7 +27,7 @@ final class UpdatePost{
         ];
 
         if ($data->blogImage) {
-            $attributes['blog_image'] = $data->blogImage->store('posts', 'public');
+            $attributes['blog_image'] = $data->blogImage->store('post', 'public');
         }
 
         $post->update($attributes);
