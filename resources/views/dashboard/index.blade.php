@@ -164,19 +164,25 @@
                                     Edit
                                 </a>
 
-                                <a
+                                {{-- <a
                                     href="/blog/{{ $post->slug }}"
                                     target="_blank"
                                     class="rounded-xl bg-green-500/10 px-4 py-2 text-sm font-medium text-green-600 transition hover:bg-green-500 hover:text-white"
                                 >
                                     View
-                                </a>
+                                </a> --}}
+                                <form action="{{ route('post.delete', $post->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
 
-                                <button
-                                    class="rounded-xl bg-red-500/10 px-4 py-2 text-sm font-medium text-red-600 transition hover:bg-red-500 hover:text-white"
-                                >
-                                    Delete
-                                </button>
+                                    <button
+                                        class="rounded-xl bg-red-500/10 px-4 py-2 text-sm font-medium text-red-600 transition hover:bg-red-500 hover:text-white"
+                                    >
+                                        Delete
+                                    </button>
+                                </form>
+
+                               
 
                             </div>
 

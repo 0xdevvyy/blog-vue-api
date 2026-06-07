@@ -25,14 +25,16 @@ class PostController extends Controller
      */
      public function index(Request $request,PostQuery $query) {
 
-            //will do this in an action.
+            //will do this in an action. and also need to get only the published post
             $posts = $query
             ->addFilter(
                 new QueryByTag(
                     $request->query('tag')
-                )
+                )//and also by this one if i want to add a filter class then i need to make new QueryByStatus() again 
+                //and if i want to query by date then i need to add date also
             )
             ->build()
+            ->where('status', 'published') //should i create a dedicated filter here?
             ->with('tags')
             ->latest()
             ->paginate();
@@ -108,6 +110,11 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        
+        $post->delete();
+
+        return redirect()
+            ->route('auth.dashboard')
+            ->with('success', 'Post deleted successfully.');
     }
 }
