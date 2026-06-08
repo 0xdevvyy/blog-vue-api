@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Http\Request;
@@ -30,8 +31,13 @@ class DashboardController extends Controller
             ->posts()
             ->where('status', 'published')
             ->count();
+
+            $tags = Tag::withCount('posts')
+            ->orderBy('name')
+            ->get();
         return view('dashboard.index', [
             'posts' => $posts,
+            'tags' => $tags,
             'archivePost' => $archivePost,
             'draftCount' => $draftCount,
             'publishCount' => $publishedPost,

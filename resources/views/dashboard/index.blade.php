@@ -5,14 +5,45 @@
     <div class="mx-auto max-w-7xl px-6 py-8 lg:px-10">
 
         <!-- Hero Section -->
-        <x-header
-            :title="'Welcome back, ' . Auth::user()->name"
-            description="My blog for my project in the span of a year of unemployment."
-            button-text="+ New Post"
-            :button-url="route('post.create')"
-            label="Dashboard"
-        />
+        <div class="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+            <x-header
+                :title="'Welcome back, ' . Auth::user()->name"
+                description="My blog for my project in the span of a year of unemployment."
+                button-text="+ New Post"
+                :button-url="route('post.create')"
+                label="Dashboard"
+            />
+            <x-tags-aside
+                title="Tags"
+                description="All Tags Post"
+                btn-title="New Post" 
+                :btn-url="route('tags.create')"
+            >
+                @forelse ($tags as $tag)
 
+                    <a
+                        href="#"
+                        class="flex items-center justify-between rounded-xl border border-border px-4 py-3 transition hover:bg-background"
+                    >
+                        <span class="text-sm font-medium">
+                            #{{ $tag->name }}
+                        </span>
+
+                        <span class="rounded-full bg-background px-2 py-1 text-xs text-secondary">
+                            {{ $tag->posts_count }}
+                        </span>
+                    </a>
+
+                @empty
+
+                    <p class="text-sm text-secondary">
+                        No tags found.
+                    </p>
+
+                @endforelse
+            </x-tags-aside>
+        </div>
+        
         <!-- Stats -->
         <section class="mb-8 grid gap-6 md:grid-cols-4">
 
@@ -231,7 +262,9 @@
         <div class="mt-8">
             {{ $posts->links() }}
         </div>
+        
 
     </div>
+    
 
 </x-layouts.auth>
