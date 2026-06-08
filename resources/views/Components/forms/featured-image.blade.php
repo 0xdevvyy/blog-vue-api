@@ -1,3 +1,9 @@
+@props([
+    'title',
+    'name',
+    'image' => null,
+])
+
 <div class="rounded-3xl border border-border bg-card p-6 shadow-sm">
     <h3 class="mb-4 font-semibold">
         {{ $title }}
@@ -28,15 +34,6 @@
         {{ $slot }}
     </div>
 </div>
-
-
-@props([
-    'title',
-    'name',
-    'image' => null,
-])
-
-
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\V1\PostController;
+use App\Http\Controllers\API\V1\TagController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
@@ -21,5 +22,7 @@ Route::middleware('auth')->group(function (){
         Route::patch('/{post:id}/update', [PostController::class, 'update'])->name('post.update');
         Route::delete('/{post:id}/delete', [PostController::class, 'destroy'])->name('post.delete');
     });
+
+    // Route::get('/tags', [TagController::class, 'create'])->name('tags.create');
     
 });
