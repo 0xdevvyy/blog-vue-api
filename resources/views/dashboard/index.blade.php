@@ -56,12 +56,10 @@
 
                                 <button
                                     type="button"
-                                    onclick="openDeleteTagModal(
-                                        {{ $tag->id }},
-                                        @js($tag->name)
-                                    )"
-                                    class="rounded-lg p-1 text-error transition hover:bg-red-50 cursor-pointer"
-                                >
+                                        data-action="{{ route('tag.update', $tag) }}"
+                                        data-name="{{ $tag->name }}"
+                                        class="delete-tag-btn rounded-lg p-1 text-error transition hover:bg-red-50 cursor-pointer"
+                                        >
                                      <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-4 w-4"
@@ -353,6 +351,42 @@
             >
                 Update Tag
             </button>
+        </div>
+
+    </div>
+</x-modal.tags>
+
+
+<x-modal.tags
+    id="delete-tag-modal"
+    title="Delete Tag"
+    formId="delete-tag-form"
+    method="DELETE"
+>
+    <div class="space-y-6">
+
+        <p
+            id="delete-tag-message"
+            class="text-sm text-secondary"
+        ></p>
+
+        <div class="flex justify-end gap-3">
+
+            <button
+                type="button"
+                data-close-modal="delete-tag-modal"
+                class="rounded-xl border border-border px-4 py-2"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="submit"
+                class="rounded-xl bg-red-600 px-4 py-2 text-white"
+            >
+                Delete Tag
+            </button>
+
         </div>
 
     </div>
