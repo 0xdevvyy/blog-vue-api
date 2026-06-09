@@ -54,7 +54,8 @@ class TagController extends Controller
      */
     public function update(UpdateTagRequest $request, Tag $tag)
     {
-        //
+        $tag->update($request->validated());
+        return to_route('auth.dashboard')->with('success', 'Successfully update the tag');
     }
 
     /**
