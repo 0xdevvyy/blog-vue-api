@@ -29,7 +29,7 @@
         />
     @else
         <input
-            id="{{ $id }}"
+            {{-- id="{{ $id }}" --}}
             name="{{ $name }}"
             type="{{ $type }}"
             value="{{ old($name, $value) }}"

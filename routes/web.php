@@ -26,8 +26,9 @@ Route::middleware('auth')->group(function (){
     // Route::get('/tags', [TagController::class, 'create'])->name('tags.create');
 
     Route::prefix('tag')->group(function(){
+        Route::post('/store', [TagController::class, 'store'])->name('tag.store');
         Route::put('/{tag}/update', [TagController::class, 'update'])->name('tag.update');
-        
+        Route::delete('/{tag}/delete', [TagController::class, 'destroy'])->name('tag.delete');
     });
     
 });

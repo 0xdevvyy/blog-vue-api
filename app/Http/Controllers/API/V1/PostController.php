@@ -113,8 +113,6 @@ class PostController extends Controller
         
         $post->delete();
 
-        return redirect()
-            ->route('auth.dashboard')
-            ->with('success', 'Post deleted successfully.');
+        return to_route('auth.dashboard')->with('success', 'Successfully deleted a post');
     }
 }

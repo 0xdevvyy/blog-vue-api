@@ -28,9 +28,11 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTagRequest $request)
+    public function store(StoreTagRequest $request, Tag $tag)
     {
-        //
+        
+        $tag->create($request->validated());
+        return to_route('auth.dashboard')->with('success', 'Successfully added a Tag'); 
     }
 
     /**
@@ -63,6 +65,8 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+
+        return to_route('auth.dashboard')->with('success', 'Successfully update the tag');
     }
 }

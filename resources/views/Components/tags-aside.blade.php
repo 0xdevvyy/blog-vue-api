@@ -2,7 +2,7 @@
     'title',
     'description',
     'btnTitle' => null,
-    'btnUrl' => route('auth.dashboard'),  
+    // 'btnUrl' => route('auth.dashboard'),  
 ])
 
 <aside>
@@ -22,13 +22,14 @@
                     </p>
                 </div>
 
-                <a
-                    href="{{$btnUrl}}"
-                    class="inline-flex items-center gap-2 rounded-xl bg-primary px-3 py-2 text-sm font-medium text-white transition hover:opacity-90"
+                <button
+                    type="button"
+                    onclick="openModal('create-tag-modal')"
+                    class="create-tag-modal cursor-pointer inline-flex items-center gap-2 rounded-xl bg-primary px-3 py-2 text-sm font-medium text-white transition hover:opacity-90"
                 >
                     <span>+</span>
                     <span>{{ $btnTitle }}</span>
-                </a>
+                </button>
 
             </div>
 

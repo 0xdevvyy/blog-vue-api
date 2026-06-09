@@ -17,7 +17,7 @@
                 title="Tags"
                 description="All Tags Post"
                 btn-title="New Post" 
-                :btn-url="route('auth.dashboard')"
+                {{-- :btn-url="route('auth.dashboard')" --}}
             >
                 @forelse ($tags as $tag)
 
@@ -56,7 +56,7 @@
 
                                 <button
                                     type="button"
-                                        data-action="{{ route('tag.update', $tag) }}"
+                                        data-action="{{ route('tag.delete', $tag) }}"
                                         data-name="{{ $tag->name }}"
                                         class="delete-tag-btn rounded-lg p-1 text-error transition hover:bg-red-50 cursor-pointer"
                                         >
@@ -392,5 +392,46 @@
     </div>
 </x-modal.tags>
     
+<x-modal.tags
+    id="create-tag-modal"
+    title="Create Tag"
+    action="{{ route('tag.store') }}"
+    method="POST"
+>
+    <div class="space-y-4">
+
+        <label
+            for="create-tag-name"
+            class="block text-sm font-medium text-primary"
+        >
+            Tag Name
+        </label>
+
+        <input
+            id="create-tag-name"
+            name="name"
+            type="text"
+            class="w-full rounded-xl border border-border px-4 py-3"
+        >
+
+        <div class="flex justify-end gap-3">
+            <button
+                type="button"
+                data-close-modal="create-tag-modal"
+                class="rounded-xl border border-border px-4 py-2"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="submit"
+                class="rounded-xl bg-primary px-4 py-2 text-white"
+            >
+                Create Tag
+            </button>
+        </div>
+
+    </div>
+</x-modal.tags>
 
 </x-layouts.auth>
