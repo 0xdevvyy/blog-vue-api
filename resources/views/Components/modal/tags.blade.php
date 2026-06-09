@@ -56,9 +56,8 @@
 
 @once
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
 
-        function openModal(id)
+     function openModal(id)
         {
             const modal = document.getElementById(id);
 
@@ -66,6 +65,8 @@
 
             document.body.classList.add('overflow-hidden');
         }
+
+    document.addEventListener('DOMContentLoaded', () => {
 
         function closeModal(id)
         {
