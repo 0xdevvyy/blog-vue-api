@@ -24,5 +24,9 @@ Route::middleware('auth')->group(function (){
     });
 
     // Route::get('/tags', [TagController::class, 'create'])->name('tags.create');
+
+    Route::prefix('tag')->group(function(){
+        Route::put('/{tag}/update', [TagController::class, 'update'])->name('tag.update');
+    });
     
 });
