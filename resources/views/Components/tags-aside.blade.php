@@ -36,7 +36,7 @@
             <details open class="group">
 
                 <summary
-                    class="flex cursor-pointer items-center justify-between rounded-xl border border-border bg-background px-4 py-3 text-sm font-medium"
+                    class="flex cursor-pointer items-center justify-between rounded-xl border border-border bg-background px-4 py-3 text-sm font-medium text-primary"
                 >
                     All Tags
 

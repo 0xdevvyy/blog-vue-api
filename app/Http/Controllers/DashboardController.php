@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index(Post $post, #[CurrentUser()] User $user)
+    public function index(#[CurrentUser()] User $user)
     {
         // $posts = $post::paginate(10);
-        $posts = Auth::user()
+        $posts = $user
             ->posts()
             ->latest()
             ->paginate(3);
@@ -23,11 +23,11 @@ class DashboardController extends Controller
             ->posts()
             ->where('status', 'draft')
             ->count();
-        $archivePost = Auth::user()
+        $archivePost = $user
             ->posts()
             ->where('status', 'archive')
             ->count();
-            $publishedPost = Auth::user()
+            $publishedPost = $user
             ->posts()
             ->where('status', 'published')
             ->count();

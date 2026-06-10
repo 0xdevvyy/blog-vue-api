@@ -19,7 +19,7 @@
 
     <div class="flex min-h-screen items-center justify-center p-4">
         <div
-            class="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/20 bg-white/80 shadow-2xl backdrop-blur-xl"
+            class="relative w-full max-w-lg overflow-hidden rounded-3xl border border-border bg-card shadow-2xl backdrop-blur-xl"
         >
             <form
                 id="{{ $formId }}"

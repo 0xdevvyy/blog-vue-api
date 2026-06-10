@@ -24,7 +24,7 @@
                     <div
                         class="group flex items-center justify-between rounded-xl border border-border px-4 py-3 transition-all duration-200 hover:bg-background">
                         <div>
-                            <p class="text-sm font-medium">
+                            <p class="text-sm font-medium text-primary">
                                 #{{ $tag->name }}
                             </p>
                         </div>
@@ -329,25 +329,25 @@
             Tag Name
         </label>
 
-        <input
+        <x-forms.input
             id="edit-tag-name"
             name="name"
             type="text"
             class="w-full rounded-xl border border-border px-4 py-3"
-        >
+        />
 
         <div class="flex justify-end gap-3">
             <button
                 type="button"
                 data-close-modal="edit-tag-modal"
-                class="rounded-xl border border-border px-4 py-2"
+                class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition-all duration-200 hover:border-slate-400 hover:bg-slate-50 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200 cursor-pointer"
             >
                 Cancel
             </button>
 
             <button
                 type="submit"
-                class="rounded-xl bg-primary px-4 py-2 text-white"
+                class="inline-flex items-center justify-center rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-primary shadow-sm transition-all duration-200 hover:bg-slate-800 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-slate-300 cursor-pointer"
             >
                 Update Tag
             </button>
@@ -375,14 +375,14 @@
             <button
                 type="button"
                 data-close-modal="delete-tag-modal"
-                class="rounded-xl border border-border px-4 py-2"
+                class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition-all duration-200 hover:border-slate-400 hover:bg-slate-50 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200"
             >
                 Cancel
             </button>
 
             <button
                 type="submit"
-                class="rounded-xl bg-red-600 px-4 py-2 text-white"
+                class="inline-flex items-center justify-center rounded-xl bg-error px-5 py-2.5 text-sm font-semibold text-primary shadow-sm transition-all duration-200 hover:bg-red-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-red-200"
             >
                 Delete Tag
             </button>
@@ -407,25 +407,25 @@
             Tag Name
         </label>
 
-        <input
+        <x-forms.input
             id="create-tag-name"
             name="name"
             type="text"
             class="w-full rounded-xl border border-border px-4 py-3"
-        >
+        />
 
-        <div class="flex justify-end gap-3">
+        <div class="flex justify-end gap-3 pt-4">
             <button
                 type="button"
                 data-close-modal="create-tag-modal"
-                class="rounded-xl border border-border px-4 py-2"
+                class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition-all duration-200 hover:border-slate-400 hover:bg-slate-50 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200 cursor-pointer"
             >
                 Cancel
             </button>
 
             <button
                 type="submit"
-                class="rounded-xl bg-primary px-4 py-2 text-white"
+                class="inline-flex items-center justify-center rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-primary shadow-sm transition-all duration-200 hover:bg-slate-800 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-slate-300 cursor-pointer"
             >
                 Create Tag
             </button>
