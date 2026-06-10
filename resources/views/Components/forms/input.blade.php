@@ -3,7 +3,7 @@
     'name',
     'type' => 'text',
     'value' => null,
-    'id'
+    'id' => null,
 ])
 
 <div>
@@ -29,7 +29,7 @@
         />
     @else
         <input
-            {{-- id="{{ $id }}" --}}
+            id="{{ $id }}"
             name="{{ $name }}"
             type="{{ $type }}"
             value="{{ old($name, $value) }}"
