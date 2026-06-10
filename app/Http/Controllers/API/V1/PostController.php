@@ -17,6 +17,7 @@ use App\Queries\Post\PostQuery;
 use App\Queries\Post\QueryByTag;
 use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -87,6 +88,8 @@ class PostController extends Controller
      */
    public function edit(Post $post)
     {
+
+        Gate::authorize('canWork', $post);
         $tags = Tag::all();
 
         return view('post.edit', compact('post', 'tags'));
@@ -97,7 +100,9 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, UpdatePost $action, Post $post)
     {
-        //store post request is just the same as update post request //nah its not the same hahahah there is other logic when updating 
+        Gate::authorize('canWork', $post);
+        // $this->authorize('update', $post);
+     
         $dto = PostData::fromRequest($request);
         $action->update($dto, $post);
 
@@ -110,7 +115,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        
+        Gate::authorize('canWork', $post);
         $post->delete();
 
         return to_route('auth.dashboard')->with('success', 'Successfully deleted a post');

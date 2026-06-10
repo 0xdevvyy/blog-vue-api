@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
+// use Illuminate\Support\Facades\Gate;
 
 class TagController extends Controller
 {
@@ -56,6 +57,7 @@ class TagController extends Controller
      */
     public function update(UpdateTagRequest $request, Tag $tag)
     {
+        
         $tag->update($request->validated());
         return to_route('auth.dashboard')->with('success', 'Successfully update the tag');
     }
@@ -67,6 +69,6 @@ class TagController extends Controller
     {
         $tag->delete();
 
-        return to_route('auth.dashboard')->with('success', 'Successfully update the tag');
+        return to_route('auth.dashboard')->with('success', 'Successfully deleted the tag');
     }
 }
