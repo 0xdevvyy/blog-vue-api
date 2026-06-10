@@ -35,6 +35,7 @@ class PostController extends Controller
                 //and if i want to query by date then i need to add date also
             )
             ->build()
+            ->where('user_id', 1)
             ->where('status', 'published') //should i create a dedicated filter here?
             ->with('tags')
             ->latest()

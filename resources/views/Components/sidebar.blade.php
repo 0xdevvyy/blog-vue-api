@@ -61,42 +61,18 @@
 
     </nav>
 
-    <!-- User Profile -->
-    <div class="p-4 border-t border-border">
+    <form method="POST" action="{{ route('session.destroy') }}">
+        @csrf
+        <div class="p-4 border-t border-border">
 
-        <div class="bg-background rounded-3xl border border-border p-4">
-
-            <div class="flex items-center gap-3">
-
-                <img
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop"
-                    class="w-12 h-12 rounded-2xl object-cover">
-
-                <div class="flex-1 min-w-0">
-
-                    <p class="font-semibold text-foreground truncate">
-                        Data Analyst
-                    </p>
-
-                    <p class="text-sm text-muted-foreground truncate">
-                        analyst@company.com
-                    </p>
-
-                </div>
-
-                <button
-                    class="p-2 rounded-xl hover:bg-muted transition-colors">
-
-                    <i data-lucide="log-out"
-                        class="w-4 h-4 text-muted-foreground">
-                    </i>
-
-                </button>
-
-            </div>
+        <button class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:ring-red-300 transition-colors duration-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path>
+                </svg>
+                <span>Log Out</span>
+            </button>
 
         </div>
-
-    </div>
+    </form>
 
 </aside>

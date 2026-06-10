@@ -30,4 +30,11 @@ class SessionsController extends Controller
     public function welcome(){
         return view('welcome');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/login')->with('success',  'Successfully Logout!');
+    }
 }

@@ -30,5 +30,7 @@ Route::middleware('auth')->group(function (){
         Route::put('/{tag}/update', [TagController::class, 'update'])->name('tag.update');
         Route::delete('/{tag}/delete', [TagController::class, 'destroy'])->name('tag.delete');
     });
+
+    Route::post('/logout', [SessionsController::class, 'logout'])->name('session.destroy');
     
 });
